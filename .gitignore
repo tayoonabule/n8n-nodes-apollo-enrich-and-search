@@ -1,3 +1,5 @@
+// Add test-n8n directory to gitignore to prevent it from being pushed
+/test-n8n/
 node_modules
 .DS_Store
 .tmp
