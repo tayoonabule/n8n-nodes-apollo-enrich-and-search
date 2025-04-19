@@ -8,8 +8,6 @@ import {
 export class ApolloApi implements ICredentialType {
 	name = 'apolloApi';
 	displayName = 'Apollo.io API';
-	// eslint-disable-next-line n8n-nodes-base/cred-class-field-documentation-url-not-http-url
-	documentationUrl = 'httpsKnowledgeApolloIoHcEnUsArticles_4413696872859SetUpApiAccess';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'API Key',
