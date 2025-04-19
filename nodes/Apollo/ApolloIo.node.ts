@@ -18,10 +18,11 @@ export class ApolloIo implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Apollo.io',
 		name: 'apolloIo',
-		icon: 'file:Apollo.svg', // SVG icon, keep path as `file:Apollo.svg`
+		icon: 'file:Apollo.svg', // SVG icon
 		group: ['resource'],
 		version: 1,
 		description: 'Interact with the Apollo.io API',
+		usableAsTool: true, // {{Added for AI Tool usage compliance}}
 		defaults: {
 			name: 'Apollo.io',
 		},
