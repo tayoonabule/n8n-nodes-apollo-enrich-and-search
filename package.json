@@ -47,10 +47,10 @@
 	"n8n": {
 		"n8nNodesApiVersion": 1,
 		"credentials": [
-			"dist/credentials/ApolloApi.credentials"
+			"dist/credentials/ApolloApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/Apollo/index"
+			"dist/nodes/Apollo/ApolloIo.node.js"
 		]
 	},
 	"devDependencies": {
