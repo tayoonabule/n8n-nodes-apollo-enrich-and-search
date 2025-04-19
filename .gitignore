@@ -8,3 +8,7 @@ dist
 npm-debug.log*
 yarn.lock
 .vscode/launch.json
+
+# Ignore packed npm tarballs
+apolloio-*.tgz
+n8n-nodes-apolloio-*.tgz
