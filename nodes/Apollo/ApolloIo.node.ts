@@ -22,6 +22,7 @@ export class ApolloIo implements INodeType {
 		group: ['resource'],
 		version: 1,
 		description: 'Interact with the Apollo.io API',
+		// @ts-ignore
 		usableAsTool: true, // {{Added for AI Tool usage compliance}}
 		defaults: {
 			name: 'Apollo.io',
