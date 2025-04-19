@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-apolloio",
-	"version": "0.2.4",
+	"version": "0.2.5",
 	"description": "Official n8n node providing full Apollo.io API integration",
 	"keywords": [
 		"n8n-community-node-package"
@@ -18,7 +18,7 @@
 	"engines": {
 		"node": ">=18.10"
 	},
-	"main": "dist/nodes/Apollo/ApolloIo.node.js",
+	"main": "dist/nodes/Apollo/index.js",
 	"scripts": {
 		"build": "tsc && gulp build:icons",
 		"dev": "tsc --watch",
@@ -26,7 +26,7 @@
 		"lint": "eslint nodes credentials package.json",
 		"lintfix": "eslint nodes credentials package.json --fix",
 		"prepublishOnly": "pnpm build && pnpm lint -c .eslintrc.prepublish.js nodes credentials package.json",
-		"n8n:test": "cross-env N8N_CUSTOM_EXTENSIONS=./dist npx n8n"
+		"n8n:test": "cross-env N8N_CUSTOM_EXTENSIONS=. npx n8n"
 	},
 	"files": [
 		"dist"
