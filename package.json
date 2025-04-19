@@ -40,7 +40,7 @@
 			"dist/credentials/ApolloApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/Apollo/ApolloIo.node.js"
+			"dist/nodes/index.js"
 		]
 	},
 	"devDependencies": {
