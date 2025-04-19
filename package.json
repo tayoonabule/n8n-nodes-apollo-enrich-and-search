@@ -30,8 +30,8 @@
 		"node": ">=18.10",
 		"n8n": ">=1.80.0"
 	},
-	"main": "dist/nodes/Apollo/index.js",
-	"types": "dist/nodes/Apollo/index.d.ts",
+	"main": "dist/nodes/Apollo/ApolloIo.node.js",
+	"types": "dist/nodes/Apollo/ApolloIo.node.d.ts",
 	"scripts": {
 		"build": "tsc && gulp build:icons",
 		"dev": "tsc --watch",
