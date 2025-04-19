@@ -13,7 +13,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/tayoonabule/n8n-nodes-apollo-enrich-and-search"
+		"url": "git+https://github.com/tayoonabule/n8n-nodes-apollo-enrich-and-search.git"
 	},
 	"engines": {
 		"node": ">=18.10",
