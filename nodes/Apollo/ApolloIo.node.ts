@@ -6,6 +6,9 @@ import {
   NodeOperationError,
 } from 'n8n-workflow';
 
+// [LOGGING] Notify module load for easier debugging
+console.log('--- Loading Custom n8n Apollo Node: ApolloIo.node.ts ---');
+
 // Define the base URL for the Apollo API
 const APOLLO_API_BASE_URL = 'https://api.apollo.io/api/v1';
 

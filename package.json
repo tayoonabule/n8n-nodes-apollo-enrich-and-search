@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-apolloio",
-	"version": "0.2.2",
+	"version": "0.2.4",
 	"description": "Official n8n node providing full Apollo.io API integration",
 	"keywords": [
 		"n8n-community-node-package"
@@ -16,13 +16,10 @@
 		"url": "git+https://github.com/tayoonabule/n8n-nodes-apollo-enrich-and-search.git"
 	},
 	"engines": {
-		"node": ">=18.10",
-		"pnpm": ">=9.1"
+		"node": ">=18.10"
 	},
-	"packageManager": "pnpm@9.1.4",
-	"main": "dist/nodes/index.js",
+	"main": "dist/nodes/Apollo/ApolloIo.node.js",
 	"scripts": {
-		"preinstall": "npx only-allow pnpm",
 		"build": "tsc && gulp build:icons",
 		"dev": "tsc --watch",
 		"format": "prettier nodes credentials --write",
