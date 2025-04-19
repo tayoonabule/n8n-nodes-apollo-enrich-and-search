@@ -9,7 +9,7 @@ import {
 // Define the base URL for the Apollo API
 const APOLLO_API_BASE_URL = 'https://api.apollo.io/api/v1';
 
-export class Apollo implements INodeType {
+export default class ApolloIo implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Apollo.io',
 		name: 'apolloIo',
