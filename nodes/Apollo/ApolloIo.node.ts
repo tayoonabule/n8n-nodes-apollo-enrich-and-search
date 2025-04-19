@@ -65,7 +65,7 @@ export class ApolloIo implements INodeType {
 				// Operation dropdown for Person
 				{
 					displayName: 'Operation',
-					name: 'operation',
+					name: 'personOperation', // Renamed
 					type: 'options',
 					displayOptions: { show: { resource: ['person'] } },
 					options: [
