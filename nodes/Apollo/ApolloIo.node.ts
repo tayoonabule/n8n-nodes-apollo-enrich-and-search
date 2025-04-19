@@ -24,6 +24,15 @@ export class ApolloIo implements INodeType {
 		description: 'Interact with the Apollo.io API',
 		// @ts-ignore
 		usableAsTool: true, // {{Added for AI Tool usage compliance}}
+		aiToolDefinition: {
+			name: 'Apollo.io Sales Automation', // Tool name for AI
+			// TODO: Define appropriate requiredPermissions if needed. Example:
+			// requiredPermissions: ['sales_data'],
+			// If no specific permissions are needed for the tool itself
+			// beyond having credentials, you might omit requiredPermissions
+			// or use a generic TBD permission, but defining it is best practice.
+			// Let's start without specific permissions for now unless you know what to put.
+		},
 		defaults: {
 			name: 'Apollo.io',
 		},
