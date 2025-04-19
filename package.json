@@ -1,31 +1,43 @@
 {
 	"name": "n8n-nodes-apolloio",
-	"version": "0.3.0",
-	"description": "Official n8n node providing full Apollo.io API integration",
+	"version": "0.3.1",
+	"description": "n8n node for Apollo.io API integration",
 	"keywords": [
-		"n8n-community-node-package"
+		"n8n-community-node-package",
+		"n8n",
+		"n8n-community",
+		"n8n-node",
+		"n8n-extension",
+		"apolloio",
+		"enrichment",
+		"sales"
 	],
 	"license": "MIT",
-	"homepage": "https://drewl.com",
+	"type": "commonjs",
+	"homepage": "https://github.com/tayoonabule/n8n-nodes-apollo-enrich-and-search",
+	"bugs": {
+		"url": "https://github.com/tayoonabule/n8n-nodes-apollo-enrich-and-search/issues"
+	},
 	"author": {
 		"name": "Drewl",
 		"email": "tayo@drewl.com"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/tayoonabule/n8n-nodes-apollo-enrich-and-search.git"
+		"url": "https://github.com/tayoonabule/n8n-nodes-apollo-enrich-and-search"
 	},
 	"engines": {
 		"node": ">=18.10"
 	},
 	"main": "dist/nodes/Apollo/index.js",
+	"types": "dist/nodes/Apollo/index.d.ts",
 	"scripts": {
 		"build": "tsc && gulp build:icons",
 		"dev": "tsc --watch",
 		"format": "prettier nodes credentials --write",
 		"lint": "eslint nodes credentials package.json",
 		"lintfix": "eslint nodes credentials package.json --fix",
-		"prepublishOnly": "pnpm build && pnpm lint -c .eslintrc.prepublish.js nodes credentials package.json",
+		"prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
 		"n8n:test": "cross-env N8N_CUSTOM_EXTENSIONS=. npx n8n"
 	},
 	"files": [
@@ -34,10 +46,10 @@
 	"n8n": {
 		"n8nNodesApiVersion": 1,
 		"credentials": [
-			"dist/credentials/ApolloApi.credentials.js"
+			"dist/credentials/ApolloApi.credentials"
 		],
 		"nodes": [
-			"dist/nodes/Apollo/index.js"
+			"dist/nodes/Apollo/index"
 		]
 	},
 	"devDependencies": {

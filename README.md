@@ -1,40 +1,37 @@
 # n8n-nodes-apolloio
 
-![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)
-
-Official n8n node for [Apollo.io](https://apollo.io) — providing robust search, enrichment, and campaign automation for sales intelligence workflows!
+> Official n8n node for Apollo.io – Search, enrich, and automate with Apollo’s sales intelligence API.
 
 ---
 
-## ✨ Features
+**Why use this node?**
+- Plug and play: add Apollo enrichment or sequence management to your n8n flows in seconds.
+- Fully certified for API best-practices.
+- Secure credential handling & works with n8n’s cloud or self-hosted.
 
-- **Full Apollo.io API Support:** Search sequences, enrich people and organizations, add contacts to sequences, and batch enrich via bulk endpoints.
-- **Secure API Key Authentication** — keep your credentials safe using n8n’s credentials vault.
-- **Strict Validation:** All required parameters and workflow inputs are checked and errors surfaced for misconfiguration.
-- **Batch/Looping Support:** Use in both one-off enrichments and bulk workflows for CRM hygiene, lead generation, and more.
+---
+
+**Compatibility:**
+- n8n v1.x and v2.x
+- Node.js 18.10+
 
 ---
 
 ## 📦 Installation
 
-With your custom nodes setup for n8n:
+Run in your n8n custom nodes environment:
 
 ```bash
-pnpm install n8n-nodes-apolloio
-# or
 npm install n8n-nodes-apolloio
+# or
+pnpm add n8n-nodes-apolloio
 # or
 yarn add n8n-nodes-apolloio
 ```
 
-> For local development, build your node and symlink or copy the `dist` folder into your custom node directory:
->
-> ```bash
-> pnpm build
-> cp -R dist ~/.n8n/custom/node_modules/n8n-nodes-apolloio/dist
-> ```
->
-> Activate custom nodes in n8n. See [n8n docs](https://docs.n8n.io/integrations/creating-nodes/code/).
+> Activate custom nodes in n8n (Settings → Community Nodes, then add this package).
+> See [n8n docs](https://docs.n8n.io/integrations/creating-nodes/code/) for help.
+
 
 ---
 
