@@ -1,0 +1,216 @@
+{
+	"node": {
+		"displayName": "Apollo.io",
+		"name": "apolloIo",
+		"icon": "file:Apollo.svg",
+		"group": ["resource"],
+		"version": 1,
+		"description": "Interact with the Apollo.io API",
+		"defaults": {
+			"name": "Apollo.io"
+		},
+		"inputs": ["main"],
+		"outputs": ["main"],
+		"credentials": [
+			{
+				"name": "apolloApi",
+				"required": true
+			}
+		],
+		"properties": [
+			{
+				"displayName": "Resource",
+				"name": "resource",
+				"type": "options",
+				"options": [
+					{ "name": "Sequence", "value": "sequence" },
+					{ "name": "Person", "value": "person" },
+					{ "name": "Organization", "value": "organization" }
+				],
+				"default": "sequence",
+				"noDataExpression": true
+			},
+			{
+				"displayName": "Operation",
+				"name": "operation",
+				"type": "options",
+				"displayOptions": { "show": { "resource": ["sequence"] } },
+				"options": [
+					{ "name": "Search",       "value": "search",      "action": "Search a sequence"},
+					{ "name": "Add Contacts", "value": "addContacts", "action": "Add contacts a sequence"}
+				],
+				"default": "search",
+				"noDataExpression": true,
+				"required": true
+			},
+			{
+				"displayName": "Operation",
+				"name": "operation",
+				"type": "options",
+				"displayOptions": { "show": { "resource": ["person"] } },
+				"options": [
+					{ "name": "Enrich", "value": "enrich", "action": "Enrich a person"},
+					{ "name": "Bulk Enrich", "value": "bulkEnrich", "action": "Bulk enrich a person"}
+				],
+				"default": "enrich",
+				"noDataExpression": true,
+				"required": true
+			},
+			{
+				"displayName": "Operation",
+				"name": "operation",
+				"type": "options",
+				"displayOptions": { "show": { "resource": ["organization"] } },
+				"options": [
+					{ "name": "Enrich", "value": "enrich", "action": "Enrich an organization"},
+					{ "name": "Bulk Enrich", "value": "bulkEnrich", "action": "Bulk enrich an organization"}
+				],
+				"default": "enrich",
+				"noDataExpression": true,
+				"required": true
+			},
+			{
+				"displayName": "Sequence Name Contains",
+				"name": "sequenceName",
+				"type": "string",
+				"default": "",
+				"description": "Filter sequences by name containing this text",
+				"placeholder": "",
+				"displayOptions": { "show": { "resource": ["sequence"], "operation": ["search"] } }
+			},
+			{
+				"displayName": "Page",
+				"name": "page",
+				"type": "number",
+				"default": 1,
+				"description": "Page number of results",
+				"typeOptions": { "minValue": 1 },
+				"displayOptions": { "show": { "resource": ["sequence"], "operation": ["search"] } }
+			},
+			{
+				"displayName": "Per Page",
+				"name": "perPage",
+				"type": "number",
+				"default": 25,
+				"description": "Results per page (max 100)",
+				"typeOptions": { "minValue": 1, "maxValue": 100 },
+				"displayOptions": { "show": { "resource": ["sequence"], "operation": ["search"] } }
+			},
+			{
+				"displayName": "Sequence ID",
+				"name": "sequenceId",
+				"type": "string",
+				"default": "",
+				"description": "ID of the sequence to add contacts to",
+				"required": true,
+				"displayOptions": { "show": { "resource": ["sequence"], "operation": ["addContacts"] } }
+			},
+			{
+				"displayName": "Contact IDs",
+				"name": "contactIds",
+				"type": "string",
+				"default": "",
+				"description": "Comma-separated list or JSON array of Apollo Contact IDs",
+				"placeholder": "5f...,6a... or [\"5f...\",\"6a...\"]",
+				"required": true,
+				"displayOptions": { "show": { "resource": ["sequence"], "operation": ["addContacts"] } }
+			},
+			{
+				"displayName": "Requirements",
+				"type": "notice",
+				"name": "personEnrichNotice",
+				"default": "",
+				"description": "Provide Email, LinkedIn URL, Apollo Person ID, or First Name + Last Name + Company Domain",
+				"displayOptions": { "show": { "resource": ["person"], "operation": ["enrich"] } }
+			},
+			{
+				"displayName": "Email",
+				"name": "personEmail",
+				"type": "string",
+				"default": "",
+				"placeholder": "name@example.com",
+				"description": "Email of the person to enrich",
+				"displayOptions": { "show": { "resource": ["person"], "operation": ["enrich"] } }
+			},
+			{
+				"displayName": "LinkedIn URL",
+				"name": "personLinkedInUrl",
+				"type": "string",
+				"default": "",
+				"placeholder": "https://www.linkedin.com/in/...",
+				"description": "LinkedIn profile URL of the person",
+				"displayOptions": { "show": { "resource": ["person"], "operation": ["enrich"] } }
+			},
+			{
+				"displayName": "Apollo Person ID",
+				"name": "personId",
+				"type": "string",
+				"default": "",
+				"displayOptions": { "show": { "resource": ["person"], "operation": ["enrich"] } }
+			},
+			{
+				"displayName": "First Name",
+				"name": "personFirstName",
+				"type": "string",
+				"default": "",
+				"description": "First name of the person",
+				"displayOptions": { "show": { "resource": ["person"], "operation": ["enrich"] } }
+			},
+			{
+				"displayName": "Last Name",
+				"name": "personLastName",
+				"type": "string",
+				"default": "",
+				"description": "Last name of the person",
+				"displayOptions": { "show": { "resource": ["person"], "operation": ["enrich"] } }
+			},
+			{
+				"displayName": "Company Domain",
+				"name": "personDomain",
+				"type": "string",
+				"default": "",
+				"description": "Domain of the person’s company",
+				"displayOptions": { "show": { "resource": ["person"], "operation": ["enrich"] } }
+			},
+			{
+				"displayName": "People Details (JSON Array)",
+				"name": "peopleDetailsJson",
+				"type": "json",
+				"default": "[{\"email\":\"name@example.com\"}]",
+				"description": "JSON array of up to 10 people objects with required identifiers",
+				"required": true,
+                "displayOptions": {
+                    "show": { "resource": ["person"], "operation": ["bulkEnrich"] }
+                }
+			},
+			{
+				"displayName": "Website Domain",
+				"name": "organizationDomain",
+				"type": "string",
+				"default": "",
+				"required": true,
+				"description": "Company website domain to enrich",
+				"placeholder": "example.com",
+				"displayOptions": {
+					"show": { "resource": ["organization"], "operation": ["enrich"] }
+				}
+			},
+			{
+				"displayName": "Apollo Organization ID",
+				"name": "organizationId",
+				"type": "string",
+				"default": "",
+				"displayOptions": { "show": { "resource": ["organization"], "operation": ["enrich"] } }
+			},
+			{
+				"displayName": "Domains (JSON Array)",
+				"name": "organizationDomainsJson",
+				"type": "json",
+				"default": "[\"example.com\"]",
+				"description": "JSON array of up to 10 domains",
+				"required": true,
+				"displayOptions": { "show": { "resource": ["organization"], "operation": ["bulkEnrich"] } }
+			}
+		]
+	}
+}
