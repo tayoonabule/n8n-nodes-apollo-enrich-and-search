@@ -70,6 +70,7 @@ export const nodeDescription: INodeTypeDescription = {
 			options: [
 				{ name: 'Enrich', value: 'enrich', action: 'Enrich an organization' },
 				{ name: 'Bulk Enrich', value: 'bulkEnrich', action: 'Bulk enrich an organization' },
+				{ name: 'Search', value: 'search', action: 'Search for organizations' },
 			],
 			default: 'enrich',
 			noDataExpression: true,
@@ -245,7 +246,12 @@ export const nodeDescription: INodeTypeDescription = {
 			type: 'string',
 			default: '',
 			description: 'Company HQ locations (semicolon separated)',
-			displayOptions: { show: { resource: ['person'], operation: ['search'] } },
+			displayOptions: {
+				show: {
+					resource: ['person', 'organization'],
+					operation: ['search'],
+				},
+			},
 		},
 		{
 			displayName: 'Organization Domains',
@@ -275,7 +281,12 @@ export const nodeDescription: INodeTypeDescription = {
 			type: 'string',
 			default: '',
 			description: 'Apollo Organization IDs (semicolon separated)',
-			displayOptions: { show: { resource: ['person'], operation: ['search'] } },
+			displayOptions: {
+				show: {
+					resource: ['person', 'organization'],
+					operation: ['search'],
+				},
+			},
 		},
 		{
 			displayName: 'Employee Count Ranges',
@@ -283,7 +294,12 @@ export const nodeDescription: INodeTypeDescription = {
 			type: 'string',
 			default: '',
 			description: 'Employee count ranges (semicolon separated, e.g. "1,10; 11,50")',
-			displayOptions: { show: { resource: ['person'], operation: ['search'] } },
+			displayOptions: {
+				show: {
+					resource: ['person', 'organization'],
+					operation: ['search'],
+				},
+			},
 		},
 		{
 			displayName: 'Min Revenue',
@@ -291,7 +307,12 @@ export const nodeDescription: INodeTypeDescription = {
 			type: 'number',
 			default: 0,
 			description: 'Minimum revenue of the employer',
-			displayOptions: { show: { resource: ['person'], operation: ['search'] } },
+			displayOptions: {
+				show: {
+					resource: ['person', 'organization'],
+					operation: ['search'],
+				},
+			},
 		},
 		{
 			displayName: 'Max Revenue',
@@ -299,7 +320,12 @@ export const nodeDescription: INodeTypeDescription = {
 			type: 'number',
 			default: 0,
 			description: 'Maximum revenue of the employer',
-			displayOptions: { show: { resource: ['person'], operation: ['search'] } },
+			displayOptions: {
+				show: {
+					resource: ['person', 'organization'],
+					operation: ['search'],
+				},
+			},
 		},
 		{
 			displayName: 'Page',
@@ -308,7 +334,12 @@ export const nodeDescription: INodeTypeDescription = {
 			default: 1,
 			description: 'Page number of results',
 			typeOptions: { minValue: 1 },
-			displayOptions: { show: { resource: ['person'], operation: ['search'] } },
+			displayOptions: {
+				show: {
+					resource: ['person', 'organization'],
+					operation: ['search'],
+				},
+			},
 		},
 		{
 			displayName: 'Per Page',
@@ -317,7 +348,133 @@ export const nodeDescription: INodeTypeDescription = {
 			default: 10,
 			description: 'Number of results per page (max 100)',
 			typeOptions: { minValue: 1, maxValue: 100 },
-			displayOptions: { show: { resource: ['person'], operation: ['search'] } },
+			displayOptions: {
+				show: {
+					resource: ['person', 'organization'],
+					operation: ['search'],
+				},
+			},
+		},
+		// Fields for Organization Search
+		{
+			displayName: 'Excluded Locations',
+			name: 'organizationNotLocations',
+			type: 'string',
+			default: '',
+			description: 'Locations to exclude (semicolon separated)',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
+		},
+		{
+			displayName: 'Keyword Tags',
+			name: 'qOrganizationKeywordTags',
+			type: 'string',
+			default: '',
+			description: 'Keywords associated with companies (semicolon separated)',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
+		},
+		{
+			displayName: 'Organization Name',
+			name: 'qOrganizationName',
+			type: 'string',
+			default: '',
+			description: 'Filter by company name',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
+		},
+		{
+			displayName: 'Min Latest Funding',
+			name: 'latestFundingAmountRangeMin',
+			type: 'number',
+			default: 0,
+			description: 'Minimum amount of most recent funding',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
+		},
+		{
+			displayName: 'Max Latest Funding',
+			name: 'latestFundingAmountRangeMax',
+			type: 'number',
+			default: 0,
+			description: 'Maximum amount of most recent funding',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
+		},
+		{
+			displayName: 'Min Total Funding',
+			name: 'totalFundingRangeMin',
+			type: 'number',
+			default: 0,
+			description: 'Minimum total funding amount',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
+		},
+		{
+			displayName: 'Max Total Funding',
+			name: 'totalFundingRangeMax',
+			type: 'number',
+			default: 0,
+			description: 'Maximum total funding amount',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
+		},
+		{
+			displayName: 'Latest Funding Date Min',
+			name: 'latestFundingDateRangeMin',
+			type: 'dateTime',
+			default: '',
+			description: 'Earliest date of most recent funding',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
+		},
+		{
+			displayName: 'Latest Funding Date Max',
+			name: 'latestFundingDateRangeMax',
+			type: 'dateTime',
+			default: '',
+			description: 'Latest date of most recent funding',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
+		},
+		{
+			displayName: 'Job Titles',
+			name: 'qOrganizationJobTitles',
+			type: 'string',
+			default: '',
+			description: 'Job titles in active job postings (semicolon separated)',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
+		},
+		{
+			displayName: 'Job Locations',
+			name: 'organizationJobLocations',
+			type: 'string',
+			default: '',
+			description: 'Locations of active job postings (semicolon separated)',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
+		},
+		{
+			displayName: 'Min Active Jobs',
+			name: 'organizationNumJobsRangeMin',
+			type: 'number',
+			default: 0,
+			description: 'Minimum number of active job postings',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
+		},
+		{
+			displayName: 'Max Active Jobs',
+			name: 'organizationNumJobsRangeMax',
+			type: 'number',
+			default: 0,
+			description: 'Maximum number of active job postings',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
+		},
+		{
+			displayName: 'Job Posted At Min',
+			name: 'organizationJobPostedAtRangeMin',
+			type: 'dateTime',
+			default: '',
+			description: 'Earliest date jobs were posted',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
+		},
+		{
+			displayName: 'Job Posted At Max',
+			name: 'organizationJobPostedAtRangeMax',
+			type: 'dateTime',
+			default: '',
+			description: 'Latest date jobs were posted',
+			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		// Fields for Organization Enrich
 		{

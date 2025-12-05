@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.9]
+
+### Added
+- **Organization Search:** Added a new "Search" operation to the Organization resource to allow finding companies.
+- **Organization Filters:** Implemented extensive filtering capabilities including:
+    - Employee Count and Revenue Ranges
+    - Organization Locations (Include/Exclude)
+    - Keywords and Name
+    - Funding (Latest Amount, Total Amount, Dates)
+    - Job Postings (Titles, Locations, Count, Date Ranges)
+
+### Internal
+- **Refactoring:** Created `utils.ts` and moved `splitAndTrim` helper function to be shared between Person and Organization logic.
+
 ## [0.3.8]
 
 ### Added

@@ -1,7 +1,7 @@
 import { IExecuteFunctions, INodeExecutionData, NodeOperationError } from 'n8n-workflow';
 import { searchSequences, addContactsToSequence } from './Sequence';
 import { enrichPerson, bulkEnrichPeople, searchPeople } from './Person';
-import { enrichOrganization, bulkEnrichOrganizations } from './Organization';
+import { enrichOrganization, bulkEnrichOrganizations, searchOrganizations } from './Organization';
 
 export async function router(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 	const resource = this.getNodeParameter('resource', 0) as string;
@@ -20,6 +20,7 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 		organization: {
 			enrich: enrichOrganization,
 			bulkEnrich: bulkEnrichOrganizations,
+			search: searchOrganizations,
 		},
 	};
 

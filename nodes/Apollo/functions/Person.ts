@@ -1,11 +1,6 @@
 import { IExecuteFunctions, INodeExecutionData, NodeOperationError } from 'n8n-workflow';
 import { apiRequest } from '../transport';
-
-const splitAndTrim = (str: string) =>
-	str
-		.split(';')
-		.map((s) => s.trim())
-		.filter((s) => s);
+import { splitAndTrim } from '../utils';
 
 export async function enrichPerson(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const items = this.getInputData();
