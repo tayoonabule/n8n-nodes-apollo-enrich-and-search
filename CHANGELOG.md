@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.10]
+
+### Documentation
+- **README:** Updated documentation to fully cover the new Person and Organization Search operations and their available filters.
+
 ## [0.3.9]
 
 ### Added

@@ -73,6 +73,13 @@ This node supports the following resources and operations:
 
 - Enrich up to 10 people at once (input as JSON array).
 
+#### Search
+
+- Search for people using extensive filters:
+  - Job Titles, Keywords, Locations, Seniority
+  - Organization details (Domain, Location, IDs, Employee Count, Revenue)
+  - Contact Email Status
+
 ### Organization
 
 #### Enrich
@@ -82,6 +89,14 @@ This node supports the following resources and operations:
 #### Bulk Enrich (Organizations)
 
 - Enrich up to 10 organizations at once (input as JSON array).
+
+#### Search
+
+- Search for organizations using extensive filters:
+  - Locations (Include/Exclude), Keywords, Name
+  - Employee Count, Revenue Range
+  - Funding (Latest Amount/Date, Total Amount)
+  - Job Postings (Titles, Locations, Count, Date Ranges)
 
 ---
 
@@ -93,8 +108,10 @@ This node supports the following resources and operations:
 | Sequence      | Add Contacts   | `sequenceId` (required), `contactIds` (CSV or JSON)     |
 | Person        | Enrich         | See [Person Enrich Identifiers](#person-enrich-identifiers)   |
 | Person        | Bulk Enrich    | `peopleDetailsJson` (JSON array, 1-10 items)            |
+| Person        | Search         | `page`, `perPage` + optional filters (Titles, Location...) |
 | Organization  | Enrich         | `organizationDomain` (required), `organizationId` (opt) |
 | Organization  | Bulk Enrich    | `organizationDomainsJson` (JSON array, 1-10 domains)    |
+| Organization  | Search         | `page`, `perPage` + optional filters (Revenue, Funding...) |
 
 ### Person Enrich Identifiers
 
