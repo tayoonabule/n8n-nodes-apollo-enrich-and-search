@@ -1,6 +1,12 @@
 import { IExecuteFunctions, INodeExecutionData, NodeOperationError } from 'n8n-workflow';
 import { apiRequest } from '../transport';
 
+const splitAndTrim = (str: string) =>
+	str
+		.split(';')
+		.map((s) => s.trim())
+		.filter((s) => s);
+
 export async function enrichPerson(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
 	const items = this.getInputData();
 	const returnData: INodeExecutionData[] = [];
@@ -60,4 +66,83 @@ export async function bulkEnrichPeople(this: IExecuteFunctions): Promise<INodeEx
 		details: peopleArray,
 	});
 	return this.helpers.returnJsonArray(response.people);
+}
+
+export async function searchPeople(this: IExecuteFunctions): Promise<INodeExecutionData[]> {
+	const items = this.getInputData();
+	const returnData: INodeExecutionData[] = [];
+
+	for (let i = 0; i < items.length; i++) {
+		try {
+			const personTitles = this.getNodeParameter('personTitles', i) as string;
+			const qKeywords = this.getNodeParameter('qKeywords', i) as string;
+			const personLocations = this.getNodeParameter('personLocations', i) as string;
+			const personSeniorities = this.getNodeParameter('personSeniorities', i) as string[];
+			const organizationLocations = this.getNodeParameter('organizationLocations', i) as string;
+			const organizationDomains = this.getNodeParameter('organizationDomains', i) as string;
+			const contactEmailStatus = this.getNodeParameter('contactEmailStatus', i) as string[];
+			const organizationIds = this.getNodeParameter('organizationIds', i) as string;
+			const organizationNumEmployeesRanges = this.getNodeParameter(
+				'organizationNumEmployeesRanges',
+				i,
+			) as string;
+			const revenueRangeMin = this.getNodeParameter('revenueRangeMin', i) as number;
+			const revenueRangeMax = this.getNodeParameter('revenueRangeMax', i) as number;
+			const page = this.getNodeParameter('page', i) as number;
+			const perPage = this.getNodeParameter('perPage', i) as number;
+
+			const body: any = {
+				page,
+				per_page: perPage,
+			};
+
+			if (personTitles) {
+				body.person_titles = splitAndTrim(personTitles);
+			}
+			if (qKeywords) {
+				body.q_keywords = qKeywords;
+			}
+			if (personLocations) {
+				body.person_locations = splitAndTrim(personLocations);
+			}
+			if (personSeniorities && personSeniorities.length > 0) {
+				body.person_seniorities = personSeniorities;
+			}
+			if (organizationLocations) {
+				body.organization_locations = splitAndTrim(organizationLocations);
+			}
+			if (organizationDomains) {
+				body.q_organization_domains_list = splitAndTrim(organizationDomains);
+			}
+			if (contactEmailStatus && contactEmailStatus.length > 0) {
+				body.contact_email_status = contactEmailStatus;
+			}
+			if (organizationIds) {
+				body.organization_ids = splitAndTrim(organizationIds);
+			}
+			if (organizationNumEmployeesRanges) {
+				body.organization_num_employees_ranges = splitAndTrim(organizationNumEmployeesRanges);
+			}
+			if (revenueRangeMin) {
+				body.revenue_range = { ...body.revenue_range, min: revenueRangeMin };
+			}
+			if (revenueRangeMax) {
+				body.revenue_range = { ...body.revenue_range, max: revenueRangeMax };
+			}
+
+			const response = await apiRequest.call(this, 'POST', '/mixed_people/api_search', body);
+
+			for (const person of response.people) {
+				returnData.push({ json: person } as INodeExecutionData);
+			}
+		} catch (error) {
+			if (this.continueOnFail()) {
+				returnData.push({ json: { error: (error as Error).message } } as INodeExecutionData);
+				continue;
+			}
+			throw error;
+		}
+	}
+
+	return returnData;
 }
