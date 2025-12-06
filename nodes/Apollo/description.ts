@@ -84,7 +84,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'sequenceName',
 			type: 'string',
 			default: '',
-			description: 'Filter sequences by name containing this text',
+			description: 'The name (or partial name) of the sequence to search for',
 			displayOptions: { show: { resource: ['sequence'], operation: ['search'] } },
 		},
 		{
@@ -92,7 +92,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'page',
 			type: 'number',
 			default: 1,
-			description: 'Page number of results',
+			description: 'The specific page of results to retrieve. Useful for pagination.',
 			typeOptions: { minValue: 1 },
 			displayOptions: { show: { resource: ['sequence'], operation: ['search'] } },
 		},
@@ -101,7 +101,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'perPage',
 			type: 'number',
 			default: 25,
-			description: 'Results per page (max 100)',
+			description: 'The number of records to return per page. Maximum is 100.',
 			typeOptions: { minValue: 1, maxValue: 100 },
 			displayOptions: { show: { resource: ['sequence'], operation: ['search'] } },
 		},
@@ -111,7 +111,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'sequenceId',
 			type: 'string',
 			default: '',
-			description: 'ID of the sequence to add contacts to',
+			description: 'The unique identifier of the Apollo sequence to which contacts will be added',
 			required: true,
 			displayOptions: { show: { resource: ['sequence'], operation: ['addContacts'] } },
 		},
@@ -120,7 +120,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'contactIds',
 			type: 'string',
 			default: '',
-			description: 'Comma-separated list or JSON array of Apollo Contact IDs',
+			description:
+				'A list of Apollo Contact IDs to add to the sequence. Accepts a comma-separated string or a JSON array of strings.',
 			placeholder: '5f...,6a... or ["5f...","6a..."]',
 			required: true,
 			displayOptions: { show: { resource: ['sequence'], operation: ['addContacts'] } },
@@ -141,7 +142,7 @@ export const nodeDescription: INodeTypeDescription = {
 			type: 'string',
 			default: '',
 			placeholder: 'name@example.com',
-			description: 'Email of the person to enrich',
+			description: 'The email address of the person you want to enrich data for',
 			displayOptions: { show: { resource: ['person'], operation: ['enrich'] } },
 		},
 		{
@@ -150,7 +151,7 @@ export const nodeDescription: INodeTypeDescription = {
 			type: 'string',
 			default: '',
 			placeholder: 'https://www.linkedin.com/in/...',
-			description: 'LinkedIn profile URL of the person',
+			description: 'The public LinkedIn profile URL of the person',
 			displayOptions: { show: { resource: ['person'], operation: ['enrich'] } },
 		},
 		{
@@ -158,6 +159,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'personId',
 			type: 'string',
 			default: '',
+			description: 'The unique Apollo ID of the person',
 			displayOptions: { show: { resource: ['person'], operation: ['enrich'] } },
 		},
 		{
@@ -165,7 +167,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'personFirstName',
 			type: 'string',
 			default: '',
-			description: 'First name of the person',
+			description: 'The first name of the person',
 			displayOptions: { show: { resource: ['person'], operation: ['enrich'] } },
 		},
 		{
@@ -173,7 +175,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'personLastName',
 			type: 'string',
 			default: '',
-			description: 'Last name of the person',
+			description: 'The last name of the person',
 			displayOptions: { show: { resource: ['person'], operation: ['enrich'] } },
 		},
 		{
@@ -181,7 +183,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'personDomain',
 			type: 'string',
 			default: '',
-			description: 'Domain of the person’s company',
+			description: 'The website domain of the company the person works for (e.g., "example.com")',
 			displayOptions: { show: { resource: ['person'], operation: ['enrich'] } },
 		},
 		// Fields for Person Bulk Enrich
@@ -190,7 +192,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'peopleDetailsJson',
 			type: 'json',
 			default: '[{"email":"name@example.com"}]',
-			description: 'JSON array of up to 10 people objects with required identifiers',
+			description:
+				'A JSON array containing details for up to 10 people to enrich in bulk. Each object should contain identifiers like email, first_name, last_name, etc.',
 			required: true,
 			displayOptions: {
 				show: { resource: ['person'], operation: ['bulkEnrich'] },
@@ -202,7 +205,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'personTitles',
 			type: 'string',
 			default: '',
-			description: 'Job titles to filter by (semicolon separated)',
+			description:
+				'A list of job titles to filter people by. Multiple titles should be separated by semicolons (e.g., "Manager; Director").',
 			displayOptions: { show: { resource: ['person'], operation: ['search'] } },
 		},
 		{
@@ -210,7 +214,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'qKeywords',
 			type: 'string',
 			default: '',
-			description: 'Keywords to filter by',
+			description: 'Keywords to filter people by. This searches across various fields.',
 			displayOptions: { show: { resource: ['person'], operation: ['search'] } },
 		},
 		{
@@ -218,7 +222,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'personLocations',
 			type: 'string',
 			default: '',
-			description: 'Locations to filter by (semicolon separated)',
+			description:
+				'A list of locations (cities, states, countries) to filter people by. Separate multiple locations with semicolons.',
 			displayOptions: { show: { resource: ['person'], operation: ['search'] } },
 		},
 		{
@@ -239,7 +244,7 @@ export const nodeDescription: INodeTypeDescription = {
 				{ name: 'VP', value: 'vp' },
 			],
 			default: [],
-			description: 'Job seniority levels to filter by',
+			description: 'Filter people based on their job seniority level',
 			displayOptions: { show: { resource: ['person'], operation: ['search'] } },
 		},
 		{
@@ -247,7 +252,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'organizationLocations',
 			type: 'string',
 			default: '',
-			description: 'Company HQ locations (semicolon separated)',
+			description:
+				"Filter based on the location of the organization's headquarters. Separate multiple locations with semicolons.",
 			displayOptions: {
 				show: {
 					resource: ['person', 'organization'],
@@ -260,7 +266,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'organizationDomains',
 			type: 'string',
 			default: '',
-			description: 'Company domains (semicolon separated)',
+			description:
+				"Filter based on the organization's website domain. Separate multiple domains with semicolons.",
 			displayOptions: { show: { resource: ['person'], operation: ['search'] } },
 		},
 		{
@@ -274,7 +281,8 @@ export const nodeDescription: INodeTypeDescription = {
 				{ name: 'Verified', value: 'verified' },
 			],
 			default: [],
-			description: 'Email statuses to filter by',
+			description:
+				'Filter people based on the status of their contact email (e.g., verified, likely to engage)',
 			displayOptions: { show: { resource: ['person'], operation: ['search'] } },
 		},
 		{
@@ -282,7 +290,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'organizationIds',
 			type: 'string',
 			default: '',
-			description: 'Apollo Organization IDs (semicolon separated)',
+			description:
+				'Filter based on specific Apollo Organization IDs. Separate multiple IDs with semicolons.',
 			displayOptions: {
 				show: {
 					resource: ['person', 'organization'],
@@ -295,7 +304,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'organizationNumEmployeesRanges',
 			type: 'string',
 			default: '',
-			description: 'Employee count ranges (semicolon separated, e.g. "1,10; 11,50")',
+			description:
+				'Filter based on the number of employees in the organization. Specify ranges separated by semicolons (e.g., "1,10; 11,50").',
 			displayOptions: {
 				show: {
 					resource: ['person', 'organization'],
@@ -308,7 +318,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'revenueRangeMin',
 			type: 'number',
 			default: 0,
-			description: 'Minimum revenue of the employer',
+			description: 'The minimum annual revenue of the organization (in USD)',
 			displayOptions: {
 				show: {
 					resource: ['person', 'organization'],
@@ -321,7 +331,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'revenueRangeMax',
 			type: 'number',
 			default: 0,
-			description: 'Maximum revenue of the employer',
+			description: 'The maximum annual revenue of the organization (in USD)',
 			displayOptions: {
 				show: {
 					resource: ['person', 'organization'],
@@ -334,7 +344,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'page',
 			type: 'number',
 			default: 1,
-			description: 'Page number of results',
+			description: 'The specific page of results to retrieve. Useful for pagination.',
 			typeOptions: { minValue: 1 },
 			displayOptions: {
 				show: {
@@ -348,7 +358,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'perPage',
 			type: 'number',
 			default: 10,
-			description: 'Number of results per page (max 100)',
+			description: 'The number of records to return per page. Maximum is 100.',
 			typeOptions: { minValue: 1, maxValue: 100 },
 			displayOptions: {
 				show: {
@@ -363,7 +373,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'organizationNotLocations',
 			type: 'string',
 			default: '',
-			description: 'Locations to exclude (semicolon separated)',
+			description:
+				'A list of locations to exclude from the search results. Separate multiple locations with semicolons.',
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		{
@@ -371,7 +382,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'qOrganizationKeywordTags',
 			type: 'string',
 			default: '',
-			description: 'Keywords associated with companies (semicolon separated)',
+			description:
+				'Keywords or tags associated with the organization to filter by. Separate multiple tags with semicolons.',
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		{
@@ -379,7 +391,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'qOrganizationName',
 			type: 'string',
 			default: '',
-			description: 'Filter by company name',
+			description: 'Filter organizations by their name (partial match supported)',
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		{
@@ -387,7 +399,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'latestFundingAmountRangeMin',
 			type: 'number',
 			default: 0,
-			description: 'Minimum amount of most recent funding',
+			description:
+				"The minimum amount raised in the organization's most recent funding round (in USD)",
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		{
@@ -395,7 +408,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'latestFundingAmountRangeMax',
 			type: 'number',
 			default: 0,
-			description: 'Maximum amount of most recent funding',
+			description:
+				"The maximum amount raised in the organization's most recent funding round (in USD)",
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		{
@@ -403,7 +417,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'totalFundingRangeMin',
 			type: 'number',
 			default: 0,
-			description: 'Minimum total funding amount',
+			description: 'The minimum total funding amount raised by the organization (in USD)',
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		{
@@ -411,7 +425,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'totalFundingRangeMax',
 			type: 'number',
 			default: 0,
-			description: 'Maximum total funding amount',
+			description: 'The maximum total funding amount raised by the organization (in USD)',
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		{
@@ -419,7 +433,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'latestFundingDateRangeMin',
 			type: 'dateTime',
 			default: '',
-			description: 'Earliest date of most recent funding',
+			description: "The earliest date to consider for the organization's most recent funding round",
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		{
@@ -427,7 +441,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'latestFundingDateRangeMax',
 			type: 'dateTime',
 			default: '',
-			description: 'Latest date of most recent funding',
+			description: "The latest date to consider for the organization's most recent funding round",
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		{
@@ -435,7 +449,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'qOrganizationJobTitles',
 			type: 'string',
 			default: '',
-			description: 'Job titles in active job postings (semicolon separated)',
+			description:
+				'Filter organizations that have active job postings matching these titles. Separate multiple titles with semicolons.',
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		{
@@ -443,7 +458,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'organizationJobLocations',
 			type: 'string',
 			default: '',
-			description: 'Locations of active job postings (semicolon separated)',
+			description:
+				'Filter organizations that have active job postings in these locations. Separate multiple locations with semicolons.',
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		{
@@ -451,7 +467,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'organizationNumJobsRangeMin',
 			type: 'number',
 			default: 0,
-			description: 'Minimum number of active job postings',
+			description: 'The minimum number of active job postings the organization has',
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		{
@@ -459,7 +475,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'organizationNumJobsRangeMax',
 			type: 'number',
 			default: 0,
-			description: 'Maximum number of active job postings',
+			description: 'The maximum number of active job postings the organization has',
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		{
@@ -467,7 +483,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'organizationJobPostedAtRangeMin',
 			type: 'dateTime',
 			default: '',
-			description: 'Earliest date jobs were posted',
+			description: 'The earliest date to consider for when job postings were created',
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		{
@@ -475,7 +491,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'organizationJobPostedAtRangeMax',
 			type: 'dateTime',
 			default: '',
-			description: 'Latest date jobs were posted',
+			description: 'The latest date to consider for when job postings were created',
 			displayOptions: { show: { resource: ['organization'], operation: ['search'] } },
 		},
 		// Fields for Organization Enrich
@@ -485,7 +501,8 @@ export const nodeDescription: INodeTypeDescription = {
 			type: 'string',
 			default: '',
 			required: true,
-			description: 'Company website domain to enrich',
+			description:
+				'The website domain of the organization you want to enrich (e.g., "example.com")',
 			placeholder: 'example.com',
 			displayOptions: {
 				show: { resource: ['organization'], operation: ['enrich'] },
@@ -496,6 +513,7 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'organizationId',
 			type: 'string',
 			default: '',
+			description: 'The unique Apollo ID of the organization',
 			displayOptions: { show: { resource: ['organization'], operation: ['enrich'] } },
 		},
 		// Fields for Organization Bulk Enrich
@@ -504,7 +522,8 @@ export const nodeDescription: INodeTypeDescription = {
 			name: 'organizationDomainsJson',
 			type: 'json',
 			default: '["example.com"]',
-			description: 'JSON array of up to 10 domains',
+			description:
+				'A JSON array of strings, where each string is a company domain to enrich in bulk',
 			required: true,
 			displayOptions: { show: { resource: ['organization'], operation: ['bulkEnrich'] } },
 		},

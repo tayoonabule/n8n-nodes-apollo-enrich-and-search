@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.13]
+
+### Improved
+- **AI Agent Friendliness:** Updated parameter descriptions to be more verbose and explicit, specifically detailing input formats (e.g., "semicolon separated") and providing context. This ensures LLMs and AI agents can correctly construct inputs for complex filters like locations, seniorities, and funding ranges.
+
 ## [0.3.12]
 
 ### Added
