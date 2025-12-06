@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.11]
+
+### Fixed
+- **Configuration:** Updated `tsconfig.json` to resolve TypeScript module resolution errors in development environments.
+
 ## [0.3.10]
 
 ### Documentation
