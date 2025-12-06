@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.15]
+
+### Documentation
+- **Developer Guide:** Added `CONTRIBUTING.md` to document development standards, project architecture, and best practices for maintaining the node.
+- **AI Guidelines:** Explicitly documented requirements for keeping the node AI-agent friendly.
+
 ## [0.3.14]
 
 ### Meta
