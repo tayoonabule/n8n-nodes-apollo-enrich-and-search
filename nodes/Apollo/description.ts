@@ -8,6 +8,8 @@ export const nodeDescription: INodeTypeDescription = {
 	group: ['resource'],
 	version: 1,
 	description: 'Interact with the Apollo.io API',
+	// @ts-ignore
+	usableAsTool: true,
 	defaults: {
 		name: 'Apollo.io',
 	},

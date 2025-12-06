@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.12]
+
+### Added
+- **AI Agent Support:** Added `usableAsTool: true` to node description, enabling the Apollo node to be used as a tool by AI agents in n8n.
+
 ## [0.3.11]
 
 ### Fixed
