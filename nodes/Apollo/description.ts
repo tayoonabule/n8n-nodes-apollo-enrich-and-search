@@ -41,8 +41,18 @@ export const nodeDescription: INodeTypeDescription = {
 			type: 'options',
 			displayOptions: { show: { resource: ['sequence'] } },
 			options: [
-				{ name: 'Search', value: 'search', action: 'Search a sequence' },
-				{ name: 'Add Contacts', value: 'addContacts', action: 'Add contacts a sequence' },
+				{
+					name: 'Search',
+					value: 'search',
+					action: 'Search a sequence',
+					description: 'Find an existing sequence by name',
+				},
+				{
+					name: 'Add Contacts',
+					value: 'addContacts',
+					action: 'Add contacts a sequence',
+					description: 'Add one or more contacts to a sequence',
+				},
 			],
 			default: 'search',
 			noDataExpression: true,
@@ -55,9 +65,26 @@ export const nodeDescription: INodeTypeDescription = {
 			type: 'options',
 			displayOptions: { show: { resource: ['person'] } },
 			options: [
-				{ name: 'Enrich', value: 'enrich', action: 'Enrich a person' },
-				{ name: 'Bulk Enrich', value: 'bulkEnrich', action: 'Bulk enrich a person' },
-				{ name: 'Search', value: 'search', action: 'Search for people' },
+				{
+					name: 'Enrich',
+					value: 'enrich',
+					action: 'Enrich a person',
+					description:
+						'Retrieve detailed information about a person using their email or other identifiers',
+				},
+				{
+					name: 'Bulk Enrich',
+					value: 'bulkEnrich',
+					action: 'Bulk enrich a person',
+					description: 'Retrieve detailed information about up to 10 people at once',
+				},
+				{
+					name: 'Search',
+					value: 'search',
+					action: 'Search for people',
+					description:
+						'Find net new people (prospects) using filters like title, location, and seniority',
+				},
 			],
 			default: 'enrich',
 			noDataExpression: true,
@@ -70,9 +97,25 @@ export const nodeDescription: INodeTypeDescription = {
 			type: 'options',
 			displayOptions: { show: { resource: ['organization'] } },
 			options: [
-				{ name: 'Enrich', value: 'enrich', action: 'Enrich an organization' },
-				{ name: 'Bulk Enrich', value: 'bulkEnrich', action: 'Bulk enrich an organization' },
-				{ name: 'Search', value: 'search', action: 'Search for organizations' },
+				{
+					name: 'Enrich',
+					value: 'enrich',
+					action: 'Enrich an organization',
+					description: 'Retrieve detailed information about a company using its domain',
+				},
+				{
+					name: 'Bulk Enrich',
+					value: 'bulkEnrich',
+					action: 'Bulk enrich an organization',
+					description: 'Retrieve detailed information about up to 10 companies at once',
+				},
+				{
+					name: 'Search',
+					value: 'search',
+					action: 'Search for organizations',
+					description:
+						'Find net new organizations (companies) using filters like revenue, size, and location',
+				},
 			],
 			default: 'enrich',
 			noDataExpression: true,

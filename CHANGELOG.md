@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.16]
+
+### Improved
+- **Operation Descriptions:** Added explicit descriptions to all operation options (Search, Enrich, Bulk Enrich, etc.) to help AI agents understand the purpose of each action.
+
 ## [0.3.15]
 
 ### Documentation
