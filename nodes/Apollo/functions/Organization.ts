@@ -87,6 +87,10 @@ export async function searchOrganizations(this: IExecuteFunctions): Promise<INod
 				'qOrganizationKeywordTags',
 				i,
 			) as string;
+			const currentlyUsingAnyOfTechnologyUids = this.getNodeParameter(
+				'currentlyUsingAnyOfTechnologyUids',
+				i,
+			) as string;
 			const qOrganizationName = this.getNodeParameter('qOrganizationName', i) as string;
 			const organizationIds = this.getNodeParameter('organizationIds', i) as string;
 			const latestFundingAmountRangeMin = this.getNodeParameter(
@@ -153,6 +157,11 @@ export async function searchOrganizations(this: IExecuteFunctions): Promise<INod
 			}
 			if (qOrganizationKeywordTags) {
 				body.q_organization_keyword_tags = splitAndTrim(qOrganizationKeywordTags);
+			}
+			if (currentlyUsingAnyOfTechnologyUids) {
+				body.currently_using_any_of_technology_uids = splitAndTrim(
+					currentlyUsingAnyOfTechnologyUids,
+				);
 			}
 			if (qOrganizationName) {
 				body.q_organization_name = qOrganizationName;
@@ -222,8 +231,9 @@ export async function searchOrganizations(this: IExecuteFunctions): Promise<INod
 			}
 
 			const response = await apiRequest.call(this, 'POST', '/mixed_companies/search', body);
+			const organizations = response?.organizations || response?.accounts || [];
 
-			for (const org of response.organizations) {
+			for (const org of organizations) {
 				returnData.push({ json: org } as INodeExecutionData);
 			}
 		} catch (error) {

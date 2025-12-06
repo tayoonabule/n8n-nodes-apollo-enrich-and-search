@@ -14,6 +14,17 @@ export async function enrichPerson(this: IExecuteFunctions): Promise<INodeExecut
 			const firstName = this.getNodeParameter('personFirstName', i) as string;
 			const lastName = this.getNodeParameter('personLastName', i) as string;
 			const domain = this.getNodeParameter('personDomain', i) as string;
+			const revealPersonalEmails = this.getNodeParameter('revealPersonalEmails', i) as boolean;
+			const revealPhoneNumber = this.getNodeParameter('revealPhoneNumber', i) as boolean;
+			const webhookUrl = this.getNodeParameter('webhookUrl', i) as string;
+
+			if (revealPhoneNumber && !webhookUrl) {
+				throw new NodeOperationError(
+					this.getNode(),
+					'Webhook URL is required when Reveal Phone Number is set to true',
+					{ itemIndex: i },
+				);
+			}
 
 			if (!email && !linkedinUrl && !personId && !(firstName && lastName && domain)) {
 				throw new NodeOperationError(this.getNode(), 'Missing required identifier fields', {
@@ -28,6 +39,9 @@ export async function enrichPerson(this: IExecuteFunctions): Promise<INodeExecut
 			if (firstName) body.first_name = firstName;
 			if (lastName) body.last_name = lastName;
 			if (domain) body.domain = domain;
+			if (revealPersonalEmails) body.reveal_personal_emails = revealPersonalEmails;
+			if (revealPhoneNumber) body.reveal_phone_number = revealPhoneNumber;
+			if (webhookUrl) body.webhook_url = webhookUrl;
 
 			const response = await apiRequest.call(this, 'POST', '/people/match', body);
 			returnData.push({ json: response.person } as INodeExecutionData);
@@ -126,8 +140,9 @@ export async function searchPeople(this: IExecuteFunctions): Promise<INodeExecut
 			}
 
 			const response = await apiRequest.call(this, 'POST', '/mixed_people/api_search', body);
+			const people = response?.people || [];
 
-			for (const person of response.people) {
+			for (const person of people) {
 				returnData.push({ json: person } as INodeExecutionData);
 			}
 		} catch (error) {

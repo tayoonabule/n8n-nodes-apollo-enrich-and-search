@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.17]
+
+### Fixed
+- **Organization Search:** Fixed a crash occurring when the API returns an unexpected response structure (e.g., missing `organizations` array). Added guards to safely handle undefined responses.
+- **Person Search:** Added similar guards to Person Search to prevent potential crashes on unexpected API responses.
+
+### Added
+- **Organization Search:** Added support for filtering by "Technologies Used" (`currentlyUsingAnyOfTechnologyUids`).
+- **Person Enrichment:** Added support for revealing personal emails and phone numbers via `revealPersonalEmails` and `revealPhoneNumber` parameters.
+- **Person Enrichment:** Added `webhookUrl` parameter, required when revealing phone numbers for asynchronous delivery.
+
 ## [0.3.16]
 
 ### Improved

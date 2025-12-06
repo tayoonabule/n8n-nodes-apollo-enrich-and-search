@@ -229,6 +229,49 @@ export const nodeDescription: INodeTypeDescription = {
 			description: 'The website domain of the company the person works for (e.g., "example.com")',
 			displayOptions: { show: { resource: ['person'], operation: ['enrich'] } },
 		},
+		{
+			displayName: 'Reveal Personal Emails',
+			name: 'revealPersonalEmails',
+			type: 'boolean',
+			default: false,
+			description:
+				"Whether to enrich the person's data with personal emails. This potentially consumes credits.",
+			displayOptions: {
+				show: {
+					resource: ['person'],
+					operation: ['enrich'],
+				},
+			},
+		},
+		{
+			displayName: 'Reveal Phone Number',
+			name: 'revealPhoneNumber',
+			type: 'boolean',
+			default: false,
+			description:
+				"Whether to enrich the person's data with all available phone numbers, including mobile. This potentially consumes credits.",
+			displayOptions: {
+				show: {
+					resource: ['person'],
+					operation: ['enrich'],
+				},
+			},
+		},
+		{
+			displayName: 'Webhook URL',
+			name: 'webhookUrl',
+			type: 'string',
+			default: '',
+			description:
+				'The webhook URL where Apollo should send the JSON response with the phone number. Required if Reveal Phone Number is set to true.',
+			displayOptions: {
+				show: {
+					resource: ['person'],
+					operation: ['enrich'],
+					revealPhoneNumber: [true],
+				},
+			},
+		},
 		// Fields for Person Bulk Enrich
 		{
 			displayName: 'People Details (JSON Array)',
@@ -352,6 +395,20 @@ export const nodeDescription: INodeTypeDescription = {
 			displayOptions: {
 				show: {
 					resource: ['person', 'organization'],
+					operation: ['search'],
+				},
+			},
+		},
+		{
+			displayName: 'Technologies Used (UIDs)',
+			name: 'currentlyUsingAnyOfTechnologyUids',
+			type: 'string',
+			default: '',
+			description:
+				'Filter organizations that use any of the specified technologies. Enter technology UIDs separated by semicolons.',
+			displayOptions: {
+				show: {
+					resource: ['organization'],
 					operation: ['search'],
 				},
 			},
