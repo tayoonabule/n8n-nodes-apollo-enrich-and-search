@@ -1,7 +1,7 @@
 {
 	"name": "n8n-nodes-apolloio",
-	"version": "0.3.13",
-	"description": "n8n node for Apollo.io API integration",
+	"version": "0.3.14",
+	"description": "n8n node for Apollo.io - Search, Enrich, and Prospect People & Organizations via API",
 	"keywords": [
 		"n8n-community-node-package",
 		"n8n",
@@ -10,7 +10,16 @@
 		"n8n-extension",
 		"apolloio",
 		"enrichment",
-		"sales"
+		"sales",
+		"crm",
+		"lead-generation",
+		"prospecting",
+		"marketing",
+		"b2b",
+		"contact-finder",
+		"email-finder",
+		"automation",
+		"workflow"
 	],
 	"license": "MIT",
 	"type": "commonjs",

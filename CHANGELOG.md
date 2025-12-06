@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.14]
+
+### Meta
+- **NPM Listing:** Enhanced package metadata (keywords and description) to improve discoverability on npm and within n8n. Added tags for CRM, B2B, Lead Generation, and Marketing.
+
 ## [0.3.13]
 
 ### Improved
