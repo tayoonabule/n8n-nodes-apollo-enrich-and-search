@@ -30,6 +30,7 @@ export const nodeDescription: INodeTypeDescription = {
 				{ name: 'Sequence', value: 'sequence' },
 				{ name: 'Person', value: 'person' },
 				{ name: 'Organization', value: 'organization' },
+				{ name: 'Contact', value: 'contact' },
 			],
 			default: 'sequence',
 			noDataExpression: true,
@@ -121,6 +122,244 @@ export const nodeDescription: INodeTypeDescription = {
 			noDataExpression: true,
 			required: true,
 		},
+		// Operations for Contact
+		{
+			displayName: 'Operation',
+			name: 'operation',
+			type: 'options',
+			displayOptions: { show: { resource: ['contact'] } },
+			options: [
+				{
+					name: 'Create',
+					value: 'create',
+					action: 'Create a contact',
+					description: 'Create a new contact',
+				},
+				{
+					name: 'Update',
+					value: 'update',
+					action: 'Update a contact',
+					description: 'Update an existing contact',
+				},
+				{
+					name: 'Search',
+					value: 'search',
+					action: 'Search for contacts',
+					description: 'Search for contacts',
+				},
+			],
+			default: 'create',
+			noDataExpression: true,
+			required: true,
+		},
+		// ----------------------------------
+		//         Contact: Create/Update
+		// ----------------------------------
+		{
+			displayName: 'Contact ID',
+			name: 'contactId',
+			type: 'string',
+			default: '',
+			required: true,
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['update'],
+				},
+			},
+			description: 'ID of the contact to update',
+		},
+		{
+			displayName: 'First Name',
+			name: 'firstName',
+			type: 'string',
+			default: '',
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['create', 'update'],
+				},
+			},
+			description: 'First name of the contact',
+		},
+		{
+			displayName: 'Last Name',
+			name: 'lastName',
+			type: 'string',
+			default: '',
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['create', 'update'],
+				},
+			},
+			description: 'Last name of the contact',
+		},
+		{
+			displayName: 'Email',
+			name: 'email',
+			type: 'string',
+			default: '',
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['create', 'update'],
+				},
+			},
+			placeholder: 'name@email.com',
+			description: 'Email address of the contact',
+		},
+		{
+			displayName: 'Title',
+			name: 'title',
+			type: 'string',
+			default: '',
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['create', 'update'],
+				},
+			},
+			description: 'Job title of the contact',
+		},
+		{
+			displayName: 'Organization Name',
+			name: 'organizationName',
+			type: 'string',
+			default: '',
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['create', 'update'],
+				},
+			},
+			description: 'Name of the organization the contact belongs to',
+		},
+		{
+			displayName: 'Organization ID',
+			name: 'organizationId',
+			type: 'string',
+			default: '',
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['create', 'update'],
+				},
+			},
+			description: 'ID of the organization the contact belongs to',
+		},
+		{
+			displayName: 'Website URL',
+			name: 'websiteUrl',
+			type: 'string',
+			default: '',
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['create', 'update'],
+				},
+			},
+			description: 'Website URL of the contact or their organization',
+		},
+		{
+			displayName: 'Label Names',
+			name: 'labelNames',
+			type: 'string',
+			default: '',
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['create', 'update'],
+				},
+			},
+			description: 'Comma-separated list of label names to apply to the contact',
+		},
+		{
+			displayName: 'Run Dedupe',
+			name: 'runDedupe',
+			type: 'boolean',
+			default: false,
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['create'],
+				},
+			},
+			description: 'Whether to check for duplicates before creating the contact',
+		},
+		// ----------------------------------
+		//         Contact: Search
+		// ----------------------------------
+		{
+			displayName: 'Keywords',
+			name: 'qKeywords',
+			type: 'string',
+			default: '',
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['search'],
+				},
+			},
+			description: 'Keywords to search for in contact name, title, email, etc',
+		},
+		{
+			displayName: 'Contact Stage IDs',
+			name: 'contactStageIds',
+			type: 'string',
+			default: '',
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['search'],
+				},
+			},
+			description: 'Comma-separated list of contact stage IDs to filter by',
+		},
+		{
+			displayName: 'Label IDs',
+			name: 'labelIds',
+			type: 'string',
+			default: '',
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['search'],
+				},
+			},
+			description: 'Comma-separated list of label IDs to filter by',
+		},
+		{
+			displayName: 'Sort By Field',
+			name: 'sortByField',
+			type: 'options',
+			options: [
+				{ name: 'Created At', value: 'contact_created_at' },
+				{ name: 'Updated At', value: 'contact_updated_at' },
+				{ name: 'Last Activity Date', value: 'contact_last_activity_date' },
+			],
+			default: 'contact_created_at',
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['search'],
+				},
+			},
+			description: 'Field to sort the results by',
+		},
+		{
+			displayName: 'Sort Ascending',
+			name: 'sortAscending',
+			type: 'boolean',
+			default: false,
+			displayOptions: {
+				show: {
+					resource: ['contact'],
+					operation: ['search'],
+				},
+			},
+			description: 'Whether to sort the results in ascending order',
+		},
 		// Fields for Sequence Search
 		{
 			displayName: 'Sequence Name Contains',
@@ -150,11 +389,15 @@ export const nodeDescription: INodeTypeDescription = {
 		},
 		// Fields for Sequence Add Contacts
 		{
-			displayName: 'Sequence ID',
+			displayName: 'Sequence Name or ID',
 			name: 'sequenceId',
-			type: 'string',
+			type: 'options',
+			typeOptions: {
+				loadOptionsMethod: 'getSequences',
+			},
 			default: '',
-			description: 'The unique identifier of the Apollo sequence to which contacts will be added',
+			description:
+				'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code-examples/expressions/">expression</a>',
 			required: true,
 			displayOptions: { show: { resource: ['sequence'], operation: ['addContacts'] } },
 		},
@@ -448,7 +691,7 @@ export const nodeDescription: INodeTypeDescription = {
 			typeOptions: { minValue: 1 },
 			displayOptions: {
 				show: {
-					resource: ['person', 'organization'],
+					resource: ['person', 'organization', 'contact'],
 					operation: ['search'],
 				},
 			},
@@ -462,7 +705,7 @@ export const nodeDescription: INodeTypeDescription = {
 			typeOptions: { minValue: 1, maxValue: 100 },
 			displayOptions: {
 				show: {
-					resource: ['person', 'organization'],
+					resource: ['person', 'organization', 'contact'],
 					operation: ['search'],
 				},
 			},

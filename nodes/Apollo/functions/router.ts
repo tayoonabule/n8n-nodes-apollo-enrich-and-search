@@ -2,6 +2,7 @@ import { IExecuteFunctions, INodeExecutionData, NodeOperationError } from 'n8n-w
 import { searchSequences, addContactsToSequence } from './Sequence';
 import { enrichPerson, bulkEnrichPeople, searchPeople } from './Person';
 import { enrichOrganization, bulkEnrichOrganizations, searchOrganizations } from './Organization';
+import { createContact, updateContact, searchContacts } from './Contact';
 
 export async function router(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 	const resource = this.getNodeParameter('resource', 0) as string;
@@ -21,6 +22,11 @@ export async function router(this: IExecuteFunctions): Promise<INodeExecutionDat
 			enrich: enrichOrganization,
 			bulkEnrich: bulkEnrichOrganizations,
 			search: searchOrganizations,
+		},
+		contact: {
+			create: createContact,
+			update: updateContact,
+			search: searchContacts,
 		},
 	};
 

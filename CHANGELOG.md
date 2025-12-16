@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.18]
+
+### Added
+- **Contact Resource:** Added full support for managing Contacts (saved people) in Apollo. You can now **Create**, **Update**, and **Search** your team's contacts database directly.
+- **Sequence Dropdown:** The "Sequence ID" field now loads a dynamic dropdown of your active sequences, making it easier to select a sequence without manually copying IDs.
+
 ## [0.3.17]
 
 ### Fixed
@@ -68,7 +74,8 @@ All notable changes to this project will be documented in this file.
 ### Added
 - **Person Search:** Added a new "Search" operation to the Person resource to allow finding net new people.
 - **Search Filters:** Implemented extensive filtering capabilities including:
-    - Job Titles and Keywords
+    - 
+    and Keywords
     - Person and Organization Locations
     - Seniority Levels
     - Organization Domains and IDs

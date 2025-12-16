@@ -1,9 +1,14 @@
-import { IDataObject, IExecuteFunctions, IHttpRequestMethods } from 'n8n-workflow';
+import {
+	IDataObject,
+	IExecuteFunctions,
+	IHttpRequestMethods,
+	ILoadOptionsFunctions,
+} from 'n8n-workflow';
 
 const APOLLO_API_BASE_URL = 'https://api.apollo.io/api/v1';
 
 export async function apiRequest(
-	this: IExecuteFunctions,
+	this: IExecuteFunctions | ILoadOptionsFunctions,
 	method: IHttpRequestMethods,
 	url: string,
 	body: IDataObject = {},
